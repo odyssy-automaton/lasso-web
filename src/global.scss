@@ -1,0 +1,226 @@
+@import 'variables';
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 400;
+}
+
+p {
+    max-width: 800px;
+}
+
+body {
+    font-size: 16px;
+    font-family: 'Futura', sans-serif;
+    font-weight: 400;
+    width: 100%;
+    text-align: left;
+    word-wrap: pre-line;
+}
+
+a {
+    color: $primary;
+    text-decoration: none;
+    cursor: pointer;
+    display: block;
+    transition: all .15s linear;
+}
+
+button,
+.Button {
+    display: block;
+    appearance: none;
+    outline: none;
+    background-color: $primary;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    height: 50px;
+    padding: 15px 25px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+// Typography
+.Data {
+    font-family: 'Roboto Mono', monospace;
+    word-break: break-all;
+}
+
+.AuthButton {
+    display: block;
+}
+
+.View {
+    padding: $base-padding;
+    @media (max-width: $mobile) {
+        padding: $mobile-padding;
+    }
+}
+
+.Value {
+    margin-top: 5px;
+    font-size: 1.35em;
+}
+
+p.Large {
+    font-size: 1.35em;
+}
+
+.Danger { color: $red; }
+.Success { color: lime-green; }
+
+// Wizard
+.Wizard {
+    h3 {
+        font-size: 2em;
+    }
+    p:first-child {
+        font-size: 1.5em;
+    }
+}
+
+.Step {
+    position: relative;
+}
+
+.ButtonGroup {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: center;
+    margin: 25px 0px;
+    width: 100%;
+    button {
+        display: inline-block;
+    }
+}
+
+// Profile
+.ProfileImg {
+    width: 150px;
+    height: 150px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    @media (max-width: $mobile) {
+        margin: 25px auto;
+    }
+}
+
+// Forms
+
+.Form {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 50vh;
+    padding: $base-padding;
+    button {
+        margin: 0 auto;
+    }
+    width: calc(100% - 100px);
+}
+
+.Label {
+    font-size: 0.85em;
+    margin-bottom: 0px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+.Field {
+    position: relative; 
+}
+
+input,
+textarea {
+    height: 40px;
+    border-radius: 50px;
+    border: 1px solid #efefef;
+    width: calc(100% - 30px);
+    margin: 10px 0px;
+    outline: none !important;
+    padding: 0px 15px;
+    font-size: 1em;
+}
+
+.InlineLabel {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+}
+
+textarea {
+    padding: 15px;
+    border-radius: 5px;
+}
+
+label {
+    margin-top: 25px;
+    font-size: 0.75em;
+    display: block;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.TabButton {
+    position: relative;
+    background-color: transparent;
+    color: $primary;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+select {
+    appearance: none;
+    border: none;
+    background-color: transparent;
+    font-size: 2em;
+    outline: none;
+}
+
+.Select {
+    position: relative;
+    svg {
+        width: 36px;
+        height: 36px;
+        fill: #000;
+        display: inline-block;
+        position: absolute;
+        top: 3px;
+        right: 70px;
+    }
+}
+
+// Loader
+.Loading {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    img {
+        display: block;
+        margin: 0;
+        max-width: 600px;
+        height: auto;
+    }
+}
+
+// Utils
+
+.Row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Section {
+    margin-top: 50px;
+}
