@@ -118,7 +118,7 @@ const SummonWizard = props => {
 
                 console.log("created new moloch", newMolochRes, application);
                 
-                props.history.push(`/dao/${contractAddress}`);
+                props.history.push(`/mao/${contractAddress}`);
               })
               .catch(err => {
                 setLoading(false);
