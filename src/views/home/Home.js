@@ -1,13 +1,30 @@
 import React, { useState, useEffect } from "react";
+import { useWeb3Context } from "web3-react";
+import { useQuery } from "@apollo/react-hooks";
+import { gql } from "apollo-boost";
+
 import { get } from "../../util/requests";
 import DaoList from "../../components/daoList/DaoList";
 import SummonButton from "../../components/summonButton/summonButton";
-import { useWeb3Context } from "web3-react";
 import "./Home.scss";
+
+const MOLOCHES_QUERY = gql`
+  {
+    factories(orderBy: count) {
+      id
+      title
+      moloch
+      summoner
+    }
+  }
+`;
 
 const Home = () => {
   const [daosData, setDaosData] = useState([]);
   const context = useWeb3Context();
+  const { loading, error, data } = useQuery(MOLOCHES_QUERY);
+
+  console.log("data", data);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,7 +48,7 @@ const Home = () => {
         {daosData.length ? (
           <DaoList daos={daosData} />
         ) : (
-          <p>THE HAUS IS LOADING THE DAOS</p>
+          <p>LASSO IS LOADING THE DAOS</p>
         )}
       </div>
     </>
