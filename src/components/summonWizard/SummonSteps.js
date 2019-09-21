@@ -4,6 +4,7 @@ import DaoInformation from "./DaoInformation";
 import CurrencyInfo from "./CurrencyInfo";
 import TimingInfo from "./TimingInfo";
 import DepositInfo from "./DepositInfo";
+import LassoInfo from "./LassoInfo";
 import SummonSummary from "./SummonSummary";
 import { tokenToAddress } from "../../util/constants";
 
@@ -64,6 +65,10 @@ export default [
       processingReward: number().required()
     }),
     actionLabel: "Proceed"
+  },
+  {
+    id: "lasso",
+    component: LassoInfo
   },
   {
     id: "summary",
