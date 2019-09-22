@@ -32,6 +32,8 @@ const onChange = (key, value, validationData) =>
 
 const CreateMao = () => (
   <div className="Form">
+    <h3>Create your Moloch Operating Agreement</h3>
+    <p>To see a template of the agreement at <a href="https://app.openlaw.io/template/LassoDAO">OpenLaw</a>.</p>
     <OpenLawForm
       apiClient={apiClient}
       executionResult={executionResult}
