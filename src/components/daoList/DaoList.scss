@@ -15,11 +15,11 @@
     transition: all .15s linear; 
     height: auto; 
     min-height: 200px; 
+    background: $gradient;
     
   }
   a:hover .DaoCard { 
-    background-color: $primary; 
-    color: white !important;
+    background: $gradient;
     scale: 1.05;
   }
 }
