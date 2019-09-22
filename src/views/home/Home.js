@@ -1,38 +1,54 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useWeb3Context } from "web3-react";
+import { useQuery } from "@apollo/react-hooks";
+import { gql } from "apollo-boost";
+
 import { get } from "../../util/requests";
 import DaoList from "../../components/daoList/DaoList";
+import Background from "../../assets/bg.jpg"
 import SummonButton from "../../components/summonButton/summonButton";
-import { useWeb3Context } from "web3-react";
 import "./Home.scss";
 
+const MOLOCHES_QUERY = gql`
+  {
+    factories(orderBy: count) {
+      id
+      title
+      moloch
+      summoner
+      guildBankValue @client
+      approvedToken @client
+      apiData @client
+    }
+  }
+`;
+
 const Home = () => {
-  const [daosData, setDaosData] = useState([]);
   const context = useWeb3Context();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const daoRes = await get(`moloch/`);
-      setDaosData(daoRes.data.reverse());
-    };
+  const { loading, error, data } = useQuery(MOLOCHES_QUERY);
 
-    fetchData();
-  }, []);
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
 
   return (
     <>
-      <div className="Hero">
-        <h1>Explore the Haus of Moloch</h1>
-        <h2>
-          Discover and Pledge to existing Moloch DAOs, or summon your own.
-        </h2>
+      <div className="Hero" style={{backgroundImage: 'url(' + Background + ')'}}>
+        <h1>Explore the land of Lassos</h1>
+        <p>Moloch + OpenLaw + Wyoming</p>
+        <p>
+          Discover and Pledge to existing Lassos, or summon your own.
+        </p>
         {context.active && !context.error && <SummonButton />}
       </div>
+      <div className="View Intro">
+        <h2>WTF is a Lasso?</h2>
+        <p>Lasso is a colloquialism  legal, autonomoous, self-sovereign organizations.</p>
+        <p>A Lasso combines the security of <a href="https://github.com/MolochVentures/moloch" target="_blank" rel="noopener noreferrer">Moloch DAO</a> smart contracts and legal compliance of OpenLaw legal contracts to create a fullly compliant and legal decentralized autonomous organization (DAO).</p>
+        <p>Discover & pledge to existing Lassos, or summon your own.</p>
+      </div>
       <div className="View">
-        {daosData.length ? (
-          <DaoList daos={daosData} />
-        ) : (
-          <p>THE HAUS IS LOADING THE DAOS</p>
-        )}
+        <DaoList daos={data.factories} />
       </div>
     </>
   );

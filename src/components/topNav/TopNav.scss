@@ -1,6 +1,6 @@
 @import '../../variables';
 .TopNav {
-    background-color: white;
+    background-color: transparent;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -12,8 +12,9 @@
         //flex-direction: column;
     }
     .Brand {
-        font-size: 36px;
+        font-size: 28px;
         margin: 0;
+        h1 { margin: 0; line-height: 1; }
         img {
             margin: 0;
             display: block;
@@ -28,7 +29,7 @@
     }
     button {
         height: 40px;
-        font-size: 0.85em;
+        font-size: 1em;
         padding: 0px 15px;
     }
 }

@@ -1,21 +1,24 @@
 import React from "react";
-import './DaoCard.scss';
+import "./DaoCard.scss";
 
-const DaoCard = (props) => {
+const DaoCard = props => {
   const { dao } = props;
 
   return (
     <>
-      {dao.contractAddress ? (
+      {dao.id ? (
         <div className="DaoCard">
-          <h4 className="DaoName">{dao.name}</h4>
-          <p>{dao.description}</p>
+          <h4 className="DaoName">{dao.title}</h4>
+          <p>{dao.apiData.description}</p>
           <p>Summoner</p>
-          <span className="Data">{dao.summonerAddress}</span>
+          <span className="Data">{dao.summoner}</span>
+          <p>
+            guildBankValue {dao.guildBankValue} {dao.approvedToken}
+          </p>
         </div>
       ) : (
         <p>THE HAUS IS LOADING THE DAO</p>
-        )}
+      )}
     </>
   );
 };
