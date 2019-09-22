@@ -6,11 +6,11 @@ import makeBlockie from "ethereum-blockies-base64";
 
 import { truncateAddr } from "../../util/helpers";
 
-import "./ApplicantItem.scss";
+import "./MemberItem.scss";
 import { WethContext, DaiContext, Web3Context } from "../../contexts/ContractContexts";
 import { addressToToken } from "../../util/constants";
 
-const ApplicantItem = props => {
+const MemberItem = props => {
   const { applicant, daoData, contract, contractData } = props;
   const [currentApplicant, setCurrentApplicant] = useState([]);
 
@@ -21,8 +21,8 @@ const ApplicantItem = props => {
   useEffect(() => {
 
     const setup = async () => {
-      if (applicant.applicantAddress && contract) {
-        const _applicant = applicant.applicantAddress;
+      if (applicant.id.split("-")[1] && contract) {
+        const _applicant = applicant.id.split("-")[1];
         
         const daoToken = contractData.token;
         
@@ -81,18 +81,33 @@ const ApplicantItem = props => {
       }
     };
     setup();
-  }, [applicant.applicantAddress]);
+  }, [applicant.id.split("-")[1]]);
 
- 
-  applicant.status = "New Pledge";
+  if (applicant.shares === "0") {
+    applicant.status = "Zero share member";
+  }
 
+  if (
+    applicant.id.split("-")[1].toLowerCase() ===
+    daoData.summonerAddress.toLowerCase()
+  ) {
+    applicant.status = "Summoner";
+  }
+
+  if (applicant.status === "new") {
+    applicant.status = "New Pledge";
+  }
+
+  if (!applicant.status) {
+    applicant.status = "Member";
+  }
 
   const applicantProfile = currentApplicant.find(
-    item => item.addr === applicant.applicantAddress
+    item => item.addr === applicant.id.split("-")[1]
   );
 
   return (
-    <Link to={`/profile/${applicant.applicantAddress}`}>
+    <Link to={`/profile/${applicant.id.split("-")[1]}`}>
       <div className="Row MemberInfo">
         <p>{applicant.status}</p>
         {applicant.status === "New Pledge" ? (
@@ -120,7 +135,7 @@ const ApplicantItem = props => {
             className="ProfileImgCard"
             style={{
               backgroundImage: `url("${makeBlockie(
-                applicant.applicantAddress
+                applicant.id.split("-")[1]
               )}")`
             }}
           >
@@ -138,7 +153,7 @@ const ApplicantItem = props => {
               ) : null}
             </h2>
           ) : null}
-          <p>{truncateAddr(applicant.applicantAddress)}</p>
+          <p>{truncateAddr(applicant.id.split("-")[1])}</p>
         </div>
       </div>
       {applicant.status === "New Pledge" && (
@@ -156,4 +171,4 @@ const ApplicantItem = props => {
   );
 };
 
-export default ApplicantItem;
+export default MemberItem;
