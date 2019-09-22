@@ -1,8 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { APIClient, Openlaw } from "openlaw";
 import OpenLawForm from "openlaw-elements";
 import MaoTemplate from "./MaoTemplate";
+import Web3 from "web3";
+import { useWeb3Context } from "web3-react";
+import { withRouter } from "react-router-dom";
+
+const web3 = new Web3(Web3.givenProvider);
 
 // OpenLaw APIClient: https://docs.openlaw.io/api-client/#authentication
 //  - used to fetch geo data in our `Address` field type
@@ -31,20 +35,31 @@ if (errorMessage) {
 const onChange = (key, value, validationData) =>
   console.log("KEY:", key, "VALUE:", value, "VALIDATION:", validationData);
 
-const CreateMao = props => (
-  <div className="Form">
-    <OpenLawForm
-      apiClient={apiClient}
-      executionResult={executionResult}
-      parameters={parameters}
-      onChangeFunction={onChange}
-      openLaw={Openlaw}
-      variables={variables}
-    />
-    <Link to={`/dao/${props.address}`}>
-      <button>Sign Operating Agreement</button>
-    </Link>
-  </div>
-);
+const signAgreement = async (context, props) => {
+  await web3.eth.personal.sign(
+    "Please sign the Operating Agreement",
+    context.account
+  );
+  props.history.push(`/dao/${props.address}`);
+};
 
-export default CreateMao;
+const CreateMao = props => {
+  const context = useWeb3Context();
+  return (
+    <div className="Form">
+      <OpenLawForm
+        apiClient={apiClient}
+        executionResult={executionResult}
+        parameters={parameters}
+        onChangeFunction={onChange}
+        openLaw={Openlaw}
+        variables={variables}
+      />
+      <button onClick={() => signAgreement(context, props)}>
+        Sign Operating Agreement
+      </button>
+    </div>
+  );
+};
+
+export default withRouter(CreateMao);
