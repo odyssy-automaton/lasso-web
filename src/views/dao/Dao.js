@@ -65,12 +65,16 @@ const Dao = props => {
         const applicationRes = await get(
           `moloch/${props.match.params.contractAddress}/applications`
         );
+        console.log('applicationRes.data', applicationRes.data);
+        
         setApplications(applicationRes.data);
 
         const totalShares = await molochContract.methods
           .totalShares()
           .call({}, "latest");
         const token = await molochContract.methods.approvedToken().call();
+        console.log('totalShares, token', totalShares, token);
+        
         setContractData({ totalShares, token });
       }
     };

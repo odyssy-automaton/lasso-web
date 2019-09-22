@@ -21,10 +21,12 @@ const ApplicantItem = props => {
   useEffect(() => {
 
     const setup = async () => {
-      if (applicant.id.split("-")[1] && contract) {
-        const _applicant = applicant.id.split("-")[1];
+      if (applicant.applicantAddress && contract) {
+        const _applicant = applicant.applicantAddress;
         
         const daoToken = contractData.token;
+        console.log('addressToToken[daoToken]', addressToToken[daoToken]);
+        
         
         let profile;
         try {
@@ -38,7 +40,7 @@ const ApplicantItem = props => {
             daoData.contractAddress
           );
           const balanceOf = await wethService.balanceOf(_applicant);
-          // console.log(_applicant, allowance, "<=", balanceOf );
+          console.log(_applicant, allowance, "<=", balanceOf );
 
           setCurrentApplicant(currentApplicant => [
             ...currentApplicant,
@@ -57,7 +59,7 @@ const ApplicantItem = props => {
             daoData.contractAddress
           );
           const balanceOf = await daiService.balanceOf(_applicant);
-          // console.log(_applicant, allowance, "<=", balanceOf );
+          console.log( _applicant, allowance, "<=", balanceOf );
 
           setCurrentApplicant(currentApplicant => [
             ...currentApplicant,
@@ -81,33 +83,18 @@ const ApplicantItem = props => {
       }
     };
     setup();
-  }, [applicant.id.split("-")[1]]);
+  }, [applicant.applicantAddress]);
 
-  if (applicant.shares === "0") {
-    applicant.status = "Zero share member";
-  }
+ 
+  applicant.status = "New Pledge";
 
-  if (
-    applicant.id.split("-")[1].toLowerCase() ===
-    daoData.summonerAddress.toLowerCase()
-  ) {
-    applicant.status = "Summoner";
-  }
-
-  if (applicant.status === "new") {
-    applicant.status = "New Pledge";
-  }
-
-  if (!applicant.status) {
-    applicant.status = "Member";
-  }
 
   const applicantProfile = currentApplicant.find(
-    item => item.addr === applicant.id.split("-")[1]
+    item => item.addr === applicant.applicantAddress
   );
 
   return (
-    <Link to={`/profile/${applicant.id.split("-")[1]}`}>
+    <Link to={`/profile/${applicant.applicantAddress}`}>
       <div className="Row MemberInfo">
         <p>{applicant.status}</p>
         {applicant.status === "New Pledge" ? (
@@ -135,7 +122,7 @@ const ApplicantItem = props => {
             className="ProfileImgCard"
             style={{
               backgroundImage: `url("${makeBlockie(
-                applicant.id.split("-")[1]
+                applicant.applicantAddress
               )}")`
             }}
           >
@@ -153,18 +140,20 @@ const ApplicantItem = props => {
               ) : null}
             </h2>
           ) : null}
-          <p>{truncateAddr(applicant.id.split("-")[1])}</p>
+          <p>{truncateAddr(applicant.applicantAddress)}</p>
         </div>
       </div>
       {applicant.status === "New Pledge" && (
         <div className="Row PledgeInfo">
           {applicantProfile && <p>{"" + applicantProfile.inEth} approved</p>}
-          {applicantProfile &&
+          <p className="Success">Tribute ready</p>
+
+          {/* {applicantProfile &&
           parseInt(applicantProfile.inEth) <= parseInt(applicantProfile.balanceOf) ? (
             <p className="Success">Tribute ready</p>
           ) : (
             <p className="Danger">Insufficient funds</p>
-          )}
+          )} */}
         </div>
       )}
     </Link>

@@ -7,8 +7,6 @@ import "./DaoCard.scss";
 
 const DaoCard = props => {
   const { dao } = props;
-
-  console.log("dao", dao);
   const { loading, error, data } = useQuery(GET_MEMBERDATA, {
     variables: { contractAddr: dao.moloch }
   });
@@ -16,23 +14,27 @@ const DaoCard = props => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
 
-  console.log("memberData", data);
-
   return (
     <>
       {dao.id ? (
         <div className="DaoCard">
           <h4 className="DaoName">{dao.title}</h4>
           <p>{dao.apiData.description}</p>
-          <p>Summoner</p>
-          <span className="Data">{dao.summoner}</span>
-          <p>
-            guildBankValue {dao.guildBankValue} {dao.approvedToken}
-          </p>
-          <p>member count: {data.members.length}</p>
+          <div className="Row">
+            <div className="Column">
+              <p className="Label">
+                Bank
+              </p>
+              <p className="Data">{dao.guildBankValue} {dao.approvedToken}</p>
+            </div>
+            <div className="Column">
+              <p className="Label">Members</p>
+              <p className="Data">{data.members.length}</p>
+            </div>
+          </div>
         </div>
       ) : (
-        <p>THE HAUS IS LOADING THE DAO</p>
+        <p>LOADING THE DAOs</p>
       )}
     </>
   );

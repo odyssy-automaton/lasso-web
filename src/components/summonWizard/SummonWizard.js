@@ -5,7 +5,7 @@ import { FormikWizard } from "formik-wizard";
 import { useWeb3Context } from "web3-react";
 import Web3Service from "../../util/web3Service";
 // import DaoAbi from "../../contracts/moloch.json";
-import FactoryAbi from '../../contracts/factory.json';
+import FactoryAbi from "../../contracts/factory.json";
 
 import DaoByteCode from "../../contracts/molochByteCode.json";
 import { post } from "../../util/requests";
@@ -59,23 +59,24 @@ const SummonWizard = props => {
     }
 
     try {
-
       const factoryContract = await web3Service.initContract(
         FactoryAbi,
-        process.env.REACT_APP_FACTORY_CONTRACT_ADDRESS,
+        process.env.REACT_APP_FACTORY_CONTRACT_ADDRESS
       );
 
-      const newDao = await factoryContract.methods.newDao(
-        values.currency.approvedToken,
-        values.timing.periodDuration,
-        values.timing.votingPeriodLength,
-        values.timing.gracePeriodLength,
-        values.timing.abortWindow,
-        web3Service.toWei(values.deposit.proposalDeposit),
-        values.deposit.dilutionBound,
-        web3Service.toWei(values.deposit.processingReward),
-        values.dao.name
-      ).send(
+      const newDao = await factoryContract.methods
+        .newDao(
+          values.currency.approvedToken,
+          values.timing.periodDuration,
+          values.timing.votingPeriodLength,
+          values.timing.gracePeriodLength,
+          values.timing.abortWindow,
+          web3Service.toWei(values.deposit.proposalDeposit),
+          values.deposit.dilutionBound,
+          web3Service.toWei(values.deposit.processingReward),
+          values.dao.name
+        )
+        .send(
           {
             from: context.account
           },
@@ -93,7 +94,7 @@ const SummonWizard = props => {
         })
         .on("receipt", function(receipt) {
           console.log(receipt.events.Register); // contains the new contract address
-          const contractAddress = receipt.events.Register.returnValues.moloch
+          const contractAddress = receipt.events.Register.returnValues.moloch;
           if (!runOnce) {
             setRunOnce(true); // not working
             const newMoloch = {
@@ -118,17 +119,7 @@ const SummonWizard = props => {
 
                 console.log("created new moloch", newMolochRes, application);
 
-                post(`moloch/apply`, application)
-                  .then(appRes => {
-                    console.log("summoner added", appRes);
-
-                    props.history.push(`/dao/${contractAddress}`);
-                    setLoading(false);
-                  })
-                  .catch(err => {
-                    setLoading(false);
-                    console.log("new applicant error", err);
-                  });
+                props.history.push(`/moa/${contractAddress}`);
               })
               .catch(err => {
                 setLoading(false);

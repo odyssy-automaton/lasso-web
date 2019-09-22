@@ -15,6 +15,8 @@
     "graphql": "^14.5.7",
     "node-libs-browser": "^2.2.1",
     "node-sass": "^4.12.0",
+    "openlaw": "^0.2.20",
+    "openlaw-elements": "^1.0.1",
     "profile-hover": "^1.0.2",
     "react": "^16.9.0",
     "react-albus": "^2.0.0",
@@ -32,7 +34,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts --max_old_space_size=4096 build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
