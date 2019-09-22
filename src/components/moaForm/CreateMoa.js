@@ -1,7 +1,7 @@
 import React from "react";
 import { APIClient, Openlaw } from "openlaw";
 import OpenLawForm from "openlaw-elements";
-import MaoTemplate from "./MaoTemplate";
+import MoaTemplate from "./MoaTemplate";
 import Web3 from "web3";
 import { useWeb3Context } from "web3-react";
 import { withRouter } from "react-router-dom";
@@ -18,7 +18,7 @@ apiClient.login(
   process.env.REACT_APP_OPENLAW_PASS
 );
 
-const { compiledTemplate } = Openlaw.compileTemplate(MaoTemplate);
+const { compiledTemplate } = Openlaw.compileTemplate(MoaTemplate);
 const { executionResult, errorMessage } = Openlaw.execute(
   compiledTemplate,
   {},
@@ -43,7 +43,7 @@ const signAgreement = async (context, props) => {
   props.history.push(`/dao/${props.address}`);
 };
 
-const CreateMao = props => {
+const CreateMoa = props => {
   const context = useWeb3Context();
   return (
     <div className="Form">
@@ -67,4 +67,4 @@ const CreateMao = props => {
   );
 };
 
-export default withRouter(CreateMao);
+export default withRouter(CreateMoa);
