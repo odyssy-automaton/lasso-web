@@ -8,7 +8,10 @@ import MaoTemplate from "./MaoTemplate";
 //  - run against your own private OpenLaw instance: 'https://[YOUR.INSTANCE.URL]';
 const apiClient = new APIClient("https://app.openlaw.io");
 // see tip below about authentication
-apiClient.login(process.env.OPENLAW_USER, process.env.OPENLAW_PASS);
+apiClient.login(
+  process.env.REACT_APP_OPENLAW_USER,
+  process.env.REACT_APP_OPENLAW_PASS
+);
 
 const { compiledTemplate } = Openlaw.compileTemplate(MaoTemplate);
 const { executionResult, errorMessage } = Openlaw.execute(
@@ -28,14 +31,16 @@ const onChange = (key, value, validationData) =>
   console.log("KEY:", key, "VALUE:", value, "VALIDATION:", validationData);
 
 const CreateMao = () => (
-  <OpenLawForm
-    apiClient={apiClient}
-    executionResult={executionResult}
-    parameters={parameters}
-    onChangeFunction={onChange}
-    openLaw={Openlaw}
-    variables={variables}
-  />
+  <div className="Form">
+    <OpenLawForm
+      apiClient={apiClient}
+      executionResult={executionResult}
+      parameters={parameters}
+      onChangeFunction={onChange}
+      openLaw={Openlaw}
+      variables={variables}
+    />
+  </div>
 );
 
 export default CreateMao;
