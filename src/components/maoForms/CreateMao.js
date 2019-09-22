@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { APIClient, Openlaw } from "openlaw";
 import OpenLawForm from "openlaw-elements";
 import MaoTemplate from "./MaoTemplate";
@@ -30,7 +31,7 @@ if (errorMessage) {
 const onChange = (key, value, validationData) =>
   console.log("KEY:", key, "VALUE:", value, "VALIDATION:", validationData);
 
-const CreateMao = () => (
+const CreateMao = props => (
   <div className="Form">
     <OpenLawForm
       apiClient={apiClient}
@@ -40,6 +41,9 @@ const CreateMao = () => (
       openLaw={Openlaw}
       variables={variables}
     />
+    <Link to={`/dao/${props.address}`}>
+      <button>Sign Operating Agreement</button>
+    </Link>
   </div>
 );
 
