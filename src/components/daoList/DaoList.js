@@ -20,7 +20,7 @@ const DaoList = (props) => {
 
   return (
     <div>
-      <h3>DAOs</h3>
+      <h3>Lassos</h3>
       <div className="DaoList">
         {daoList}
       </div>
