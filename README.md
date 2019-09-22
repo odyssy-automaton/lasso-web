@@ -1,6 +1,20 @@
 # lasso-web
 
-Hackathon project. Needs some work.
+Decentralized Autonomous Organizations are missing the fundamental component allowing them to be compliant with the laws and regulations so far enacted by other state legislatures. 
+
+Wyoming…
+
+
+With Wyoming series LLC legislation, Lasso is building a framework enabling DAOs to register as non-profit organizations.
+
+
+## Lasso Hacked 
+
+No longer will DAOs that incorporate in Wyoming have to worry about not being compliant with laws & regulations in their respective states.
+
+
+
+### Hackathon project. Needs some work.
 
 Still needs your support
 
