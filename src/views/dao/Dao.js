@@ -73,6 +73,8 @@ const Dao = props => {
           .totalShares()
           .call({}, "latest");
         const token = await molochContract.methods.approvedToken().call();
+        console.log('totalShares, token', totalShares, token);
+        
         setContractData({ totalShares, token });
       }
     };

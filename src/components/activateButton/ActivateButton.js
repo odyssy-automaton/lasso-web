@@ -26,7 +26,7 @@ const ActivateButton = () => {
         <button onClick={() => activate()}>Sign in with Ethereum</button>
 
         {context.error.code === "UNSUPPORTED_NETWORK" && (
-          <p className="ErrorText">Unsupported network: please use mainnet</p>
+          <p className="ErrorText">Unsupported network: please use KOVAN</p>
         )}
       </>
     );

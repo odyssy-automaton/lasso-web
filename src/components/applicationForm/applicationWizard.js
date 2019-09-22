@@ -10,7 +10,11 @@ import MolochService from "../../util/molochService";
 
 import Loading from "../loading/Loading";
 
-import { WethContext, DaiContext, Web3Context } from "../../contexts/ContractContexts";
+import {
+  WethContext,
+  DaiContext,
+  Web3Context
+} from "../../contexts/ContractContexts";
 import { addressToToken } from "../../util/constants";
 
 function FormWrapper({
@@ -43,26 +47,24 @@ const ApplicationWizard = props => {
   const [formError, setformError] = useState("");
 
   const context = useWeb3Context();
-// 
+
   const [web3Service] = useContext(Web3Context);
   const [wethService] = useContext(WethContext);
   const [daiService] = useContext(DaiContext);
-
 
   let currency = "";
   const handleSubmit = async values => {
     setLoading(true);
 
     try {
-      console.log('contract', contract);
-      
+      console.log("contract", contract);
+
       const daoToken = await contract.methods.approvedToken().call();
       if (addressToToken[daoToken] === "Weth") {
         currency = wethService;
       } else {
         currency = daiService;
       }
-      
 
       const application = {
         name: values.personal.name,
@@ -82,7 +84,7 @@ const ApplicationWizard = props => {
         });
       } else {
         console.log({
-          message: "thanks for signaling, appoving tokens now"
+          message: "thanks for signaling, approving tokens now"
         });
       }
 
@@ -95,9 +97,7 @@ const ApplicationWizard = props => {
 
           setLoading(false);
           history.push(`/dao/${contractAddress}`);
-
-          }
-        )
+        })
         .then(resp => {
           return resp;
         })
