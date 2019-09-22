@@ -32,24 +32,11 @@ const Home = () => {
       </div>
       <div className="View Intro">
         <h2>WTF is a Lasso?</h2>
-        <p>
-          Lasso is a colloquialism legal, autonomoous, self-sovereign
-          organizations.
-        </p>
-        <p>
-          A Lasso combines the security of{" "}
-          <a
-            href="https://github.com/MolochVentures/moloch"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Moloch DAO
-          </a>{" "}
-          smart contracts and legal compliance of OpenLaw legal contracts to
-          create a fullly compliant and legal decentralized autonomous
-          organization (DAO).
-        </p>
+        <p>Lasso is a colloquial acronym for 'legal, autonomous, self-sovereign organization'.</p>
+        <p>A Lasso combines the security of <a href="https://github.com/MolochVentures/moloch" target="_blank" rel="noopener noreferrer">Moloch DAO</a> smart contracts and legal compliance of OpenLaw legal contracts to create a fully compliant and legal decentralized autonomous organization (DAO) in the state of Wyoming.</p>
         <p>Discover & pledge to existing Lassos, or summon your own.</p>
+        <h2>Wyoming is blazing the trail in Blockchain.</h2>
+        <p>Wyoming became the first elected body to recognize utility tokens as a new form of property that is neither securities nor money under Wyoming law. Wyoming offers blockchain businesses its most favorable tax, business entity and privacy protections.</p>
       </div>
       <div className="View">
         <DaoList daos={data.factories} />

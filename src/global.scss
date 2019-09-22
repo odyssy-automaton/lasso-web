@@ -26,14 +26,13 @@ body {
 a {
     color: $primary;
     text-decoration: underline;
-    cursor: pointer;
     display: inline-block;
     transition: all .15s linear;
 }
 
 button,
 .Button {
-    display: block;
+    display: inline-block;
     appearance: none;
     outline: none;
     background-color: transparent;
