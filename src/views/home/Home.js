@@ -17,7 +17,7 @@ const Home = () => {
   const { loading, error, data } = useQuery(GET_MOLOCHES);
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
+  if (error) return <p>Error :( Are you on Kovan?</p>;
 
   return (
     <>
