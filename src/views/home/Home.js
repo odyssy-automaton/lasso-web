@@ -5,6 +5,7 @@ import { gql } from "apollo-boost";
 
 import { get } from "../../util/requests";
 import DaoList from "../../components/daoList/DaoList";
+import Background from "../../assets/bg.jpg"
 import SummonButton from "../../components/summonButton/summonButton";
 import "./Home.scss";
 
@@ -32,12 +33,19 @@ const Home = () => {
 
   return (
     <>
-      <div className="Hero">
-        <h1>Explore the Haus of Moloch</h1>
-        <h2>
-          Discover and Pledge to existing Moloch DAOs, or summon your own.
-        </h2>
+      <div className="Hero" style={{backgroundImage: 'url(' + Background + ')'}}>
+        <h1>Explore the land of Lassos</h1>
+        <p>Moloch + OpenLaw + Wyoming</p>
+        <p>
+          Discover and Pledge to existing Lassos, or summon your own.
+        </p>
         {context.active && !context.error && <SummonButton />}
+      </div>
+      <div className="View Intro">
+        <h2>WTF is a Lasso?</h2>
+        <p>Lasso is a colloquialism  legal, autonomoous, self-sovereign organizations.</p>
+        <p>A Lasso combines the security of <a href="https://github.com/MolochVentures/moloch" target="_blank" rel="noopener noreferrer">Moloch DAO</a> smart contracts and legal compliance of OpenLaw legal contracts to create a fullly compliant and legal decentralized autonomous organization (DAO).</p>
+        <p>Discover & pledge to existing Lassos, or summon your own.</p>
       </div>
       <div className="View">
         <DaoList daos={data.factories} />

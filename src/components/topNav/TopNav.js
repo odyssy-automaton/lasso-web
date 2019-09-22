@@ -7,8 +7,8 @@ import Brand from "../../assets/logo.png";
 const TopNav = () => {
   return (
     <header className="TopNav">
-      <Link to={`/`} className="Brand" href="/" alt="DAOHaus Home">
-        <img src={Brand} alt="DAOHAUS" />
+      <Link to={`/`} className="Brand" href="/" alt="Lasso Home">
+        <h1>Lasso</h1>
       </Link>
       <ActivateButton />
     </header>
