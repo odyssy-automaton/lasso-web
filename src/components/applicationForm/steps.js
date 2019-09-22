@@ -1,45 +1,50 @@
-import { object, number, string } from 'yup'
+import { object, number, string } from "yup";
 
-import PersonalInfo from './personalInfo'
-import PledgeInfo from './pledgeInfo'
-import SharesInfo from './sharesInfo'
-import Summary from './summary'
+import PersonalInfo from "./personalInfo";
+import PledgeInfo from "./pledgeInfo";
+import SharesInfo from "./sharesInfo";
+import SignAgreement from "./signAgreement";
+import Summary from "./summary";
 
 export default [
   {
-    id: 'personal',
+    id: "personal",
     component: PersonalInfo,
     initialValues: {
-      name: '',
-      bio: '',
+      name: "",
+      bio: ""
     },
     validationSchema: object().shape({
       name: string().required(),
-      bio: string().required(),
-    }),
+      bio: string().required()
+    })
   },
   {
-    id: 'pledge',
+    id: "pledge",
     component: PledgeInfo,
     initialValues: {
-      pledge: '',
+      pledge: ""
     },
     validationSchema: object().shape({
-      pledge: number().required(),
-    }),
+      pledge: number().required()
+    })
   },
   {
-    id: 'shares',
+    id: "shares",
     component: SharesInfo,
     initialValues: {
-      shares: '',
+      shares: ""
     },
     validationSchema: object().shape({
-      shares: number().required(),
-    }),
+      shares: number().required()
+    })
   },
   {
-    id: 'summary',
-    component: Summary,
+    id: "signAgreement",
+    component: SignAgreement
   },
-]
+  {
+    id: "summary",
+    component: Summary
+  }
+];
