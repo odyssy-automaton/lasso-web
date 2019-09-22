@@ -47,9 +47,9 @@ const CreateMao = props => {
   const context = useWeb3Context();
   return (
     <div className="Form">
-      <h3>Create your Moloch Operating Agreement</h3>
+      <h3>Create your Operating Agreement</h3>
       <p>
-        To see a template of the agreement at{" "}
+        See the template of the agreement on{" "}
         <a href="https://app.openlaw.io/template/LassoDAO">OpenLaw</a>.
       </p>
       <OpenLawForm
