@@ -18,7 +18,7 @@ const DaoCard = props => {
     <>
       {dao.id ? (
         <div className="DaoCard">
-          <h4 className="DaoName">{dao.title}</h4>
+          <h4 className="DaoName">{dao.apiData.name}</h4>
           <p>{dao.apiData.description}</p>
           <div className="Row">
             <div className="Column">
