@@ -7,35 +7,41 @@ import OpenLawForm from "openlaw-elements";
 //  - run against your own private OpenLaw instance: 'https://[YOUR.INSTANCE.URL]';
 const apiClient = new APIClient("https://app.openlaw.io");
 // see tip below about authentication
-// apiClient.login("[YOUR_OPENLAW_EMAIL]", "[YOUR_OPENLAW_PASSWORD]");
+apiClient.login("tommy.cox@protonmail.com", "INSERT_PASSWORD_HERE");
 
-const { compiledTemplate } = Openlaw.compileTemplate(
-  "**Name**: [[First Name]] [[Last Name]]"
-);
-const { executionResult, errorMessage } = Openlaw.execute(
-  compiledTemplate,
-  {},
-  {},
-  {}
-);
-const variables = Openlaw.getExecutedVariables(executionResult, {});
-const parameters = {};
+apiClient.getTemplate('LassoDAO').then(result => {
+  const { compiledTemplate } = Openlaw.compileTemplate(
+    result
+  );
+  const { executionResult, errorMessage } = Openlaw.execute(
+    compiledTemplate,
+    {},
+    {},
+    {}
+  );
+  this.setState({
+    executionResult,
+    variables: Openlaw.getExecutedVariables(executionResult, {}),
+    parameters: {}
+  });
 
-if (errorMessage) {
-  console.error("Openlaw Execution Error:", errorMessage);
-}
+  if (errorMessage) {
+    console.error("Openlaw Execution Error:", errorMessage);
+  }
 
-const onChange = (key, value, validationData) =>
-  console.log("KEY:", key, "VALUE:", value, "VALIDATION:", validationData);
+  // const onChange = (key, value, validationData) =>
+  //   console.log("KEY:", key, "VALUE:", value, "VALIDATION:", validationData);
+  
+})
 
 const Mao = () => (
   <OpenLawForm
     apiClient={apiClient}
-    executionResult={executionResult}
-    parameters={parameters}
-    onChangeFunction={onChange}
+    executionResult={this.state.executionResult}
+    parameters={this.state.parameters}
+    // onChangeFunction={onChange}
     openLaw={Openlaw}
-    variables={variables}
+    variables={this.state.variables}
   />
 );
 
