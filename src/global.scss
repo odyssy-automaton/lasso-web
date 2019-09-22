@@ -25,9 +25,12 @@ body {
 
 a {
     color: $primary;
-    text-decoration: underline;
+    text-decoration: none;
     display: inline-block;
     transition: all .15s linear;
+    &.standard {
+        text-decoration: underline;
+    }
 }
 
 button,
