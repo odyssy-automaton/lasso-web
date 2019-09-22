@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useWeb3Context } from "web3-react";
 import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
@@ -15,25 +15,20 @@ const MOLOCHES_QUERY = gql`
       title
       moloch
       summoner
+      guildBankValue @client
+      approvedToken @client
+      apiData @client
     }
   }
 `;
 
 const Home = () => {
-  const [daosData, setDaosData] = useState([]);
   const context = useWeb3Context();
+
   const { loading, error, data } = useQuery(MOLOCHES_QUERY);
 
-  console.log("data", data);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const daoRes = await get(`moloch/`);
-      setDaosData(daoRes.data.reverse());
-    };
-
-    fetchData();
-  }, []);
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
 
   return (
     <>
@@ -45,11 +40,7 @@ const Home = () => {
         {context.active && !context.error && <SummonButton />}
       </div>
       <div className="View">
-        {daosData.length ? (
-          <DaoList daos={daosData} />
-        ) : (
-          <p>LASSO IS LOADING THE DAOS</p>
-        )}
+        <DaoList daos={data.factories} />
       </div>
     </>
   );

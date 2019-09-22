@@ -6,6 +6,7 @@ export default class MolochService {
   web3Service;
   contract;
   daoAbi;
+  contract;
 
   constructor(contractAddr, web3Service) {
     this.contractAddr = contractAddr;
@@ -14,9 +15,7 @@ export default class MolochService {
   }
 
   async initContract() {
-    console.log('init moloch service', this.contractAddr);
-    
-    return await this.web3Service.initContract(
+    this.contract = await this.web3Service.initContract(
       this.daoAbi,
       this.contractAddr
     );
@@ -98,6 +97,7 @@ export default class MolochService {
       await this.initContract();
     }
     let guildBank = await this.contract.methods.guildBank().call();
+
     return guildBank;
   }
 
@@ -196,9 +196,9 @@ export default class MolochService {
     if (!this.contract) {
       await this.initContract();
     }
-    
+
     let info = await this.contract.methods.approvedToken().call();
-    
+
     return addressToToken[info];
   }
 
