@@ -5,40 +5,29 @@ import { gql } from "apollo-boost";
 
 import { get } from "../../util/requests";
 import DaoList from "../../components/daoList/DaoList";
-import Background from "../../assets/bg.jpg"
+import Background from "../../assets/bg.jpg";
 import SummonButton from "../../components/summonButton/summonButton";
-import "./Home.scss";
+import { GET_MOLOCHES } from "../../util/queries";
 
-const MOLOCHES_QUERY = gql`
-  {
-    factories(orderBy: count) {
-      id
-      title
-      moloch
-      summoner
-      guildBankValue @client
-      approvedToken @client
-      apiData @client
-    }
-  }
-`;
+import "./Home.scss";
 
 const Home = () => {
   const context = useWeb3Context();
 
-  const { loading, error, data } = useQuery(MOLOCHES_QUERY);
+  const { loading, error, data } = useQuery(GET_MOLOCHES);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
 
   return (
     <>
-      <div className="Hero" style={{backgroundImage: 'url(' + Background + ')'}}>
+      <div
+        className="Hero"
+        style={{ backgroundImage: "url(" + Background + ")" }}
+      >
         <h1>Explore the land of Lassos</h1>
         <p>Moloch + OpenLaw + Wyoming</p>
-        <p>
-          Discover and Pledge to existing Lassos, or summon your own.
-        </p>
+        <p>Discover and Pledge to existing Lassos, or summon your own.</p>
         {context.active && !context.error && <SummonButton />}
       </div>
       <div className="View Intro">
