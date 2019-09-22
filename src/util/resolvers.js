@@ -32,7 +32,6 @@ export const resolvers = {
     },
     apiData: async (moloch, _args) => {
       const daoRes = await get(`moloch/${moloch.moloch}`);
-      console.log("daoRes", daoRes);
       return daoRes.data;
     },
     approvedToken: async (moloch, _args) => {

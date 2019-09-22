@@ -7,8 +7,6 @@ import "./DaoList.scss";
 const DaoList = props => {
   const { daos } = props;
 
-  console.log("daos", daos);
-
   const daoList = daos.map(dao => {
     return (
       <div className="DaoList__Item" key={dao.moloch}>
