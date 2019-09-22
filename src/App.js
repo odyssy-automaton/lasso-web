@@ -6,6 +6,7 @@ import { ApolloProvider } from "react-apollo";
 
 import Routes from "./Routes";
 import TopNav from "./components/topNav/TopNav";
+import Footer from "./components/footer/Footer";
 import ContractContexts from "./contexts/ContractContexts";
 import { resolvers } from "./util/resolvers";
 
@@ -43,6 +44,7 @@ function App() {
             <Router>
               <TopNav />
               <Routes />
+              <Footer />
             </Router>
           </div>
         </ContractContexts>
