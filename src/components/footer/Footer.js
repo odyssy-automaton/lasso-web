@@ -20,7 +20,14 @@ const Footer = withRouter(({ ...props }) => {
         <Link to={`/`} className="Brand" href="/" alt="Lasso Home">
           <h1>Lasso</h1>
         </Link>
-        <a href="https://t.me/joinchat/IJqu9xOfqsnAzdHNGJz2EA">
+        <a href="https://odyssy.io" target="_blank" rel="noopener noreferrer">
+          Built with 🌶️ by Odyssy
+        </a>
+        <a
+          href="https://t.me/joinchat/IJqu9xOfqsnAzdHNGJz2EA"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Join the Telegram Group
         </a>
       </div>
