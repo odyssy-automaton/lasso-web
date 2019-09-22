@@ -7,6 +7,7 @@ import { ApolloProvider } from "react-apollo";
 import Routes from "./Routes";
 import TopNav from "./components/topNav/TopNav";
 import ContractContexts from "./contexts/ContractContexts";
+import { resolvers } from "./util/resolvers";
 
 import "./global.scss";
 import "./App.css";
@@ -23,7 +24,10 @@ const Infura = new NetworkOnlyConnector({
 const connectors = { MetaMask, Infura };
 
 const client = new ApolloClient({
-  uri: "https://api.thegraph.com/subgraphs/name/skuhlmann/molochfactorykovan"
+  uri: "https://api.thegraph.com/subgraphs/name/skuhlmann/molochfactorykovan",
+  clientState: {
+    resolvers
+  }
 });
 
 function App() {
