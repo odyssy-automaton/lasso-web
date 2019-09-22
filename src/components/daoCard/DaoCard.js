@@ -1,8 +1,22 @@
 import React from "react";
+import { useQuery } from "@apollo/react-hooks";
+
+import { GET_MEMBERDATA } from "../../util/queries";
+
 import "./DaoCard.scss";
 
 const DaoCard = props => {
   const { dao } = props;
+
+  console.log("dao", dao);
+  const { loading, error, data } = useQuery(GET_MEMBERDATA, {
+    variables: { contractAddr: dao.moloch }
+  });
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
+
+  console.log("memberData", data);
 
   return (
     <>
@@ -15,6 +29,7 @@ const DaoCard = props => {
           <p>
             guildBankValue {dao.guildBankValue} {dao.approvedToken}
           </p>
+          <p>member count: {data.members.length}</p>
         </div>
       ) : (
         <p>THE HAUS IS LOADING THE DAO</p>
