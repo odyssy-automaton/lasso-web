@@ -31,14 +31,16 @@ const onChange = (key, value, validationData) =>
   console.log("KEY:", key, "VALUE:", value, "VALIDATION:", validationData);
 
 const CreateMao = () => (
-  <OpenLawForm
-    apiClient={apiClient}
-    executionResult={executionResult}
-    parameters={parameters}
-    onChangeFunction={onChange}
-    openLaw={Openlaw}
-    variables={variables}
-  />
+  <div className="Form">
+    <OpenLawForm
+      apiClient={apiClient}
+      executionResult={executionResult}
+      parameters={parameters}
+      onChangeFunction={onChange}
+      openLaw={Openlaw}
+      variables={variables}
+    />
+  </div>
 );
 
 export default CreateMao;
